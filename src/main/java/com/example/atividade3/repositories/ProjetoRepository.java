@@ -16,4 +16,8 @@ public interface ProjetoRepository extends JpaRepository<Projeto, Long>{
 	    Optional<Projeto> findByIdWithFuncionarios(@Param("id") Long id);
 	 
 	 List<Projeto> findByDataInicioBetween(LocalDate dataInicio, LocalDate dataFim);
+	 
+	 @Query("SELECT DISTINCT p FROM Projeto p JOIN p.funcionarios f WHERE f.id = :funcionarioId")
+	 List<Projeto> findByFuncionariosId(@Param("funcionarioId") Long funcionarioId);
+	 
 }
